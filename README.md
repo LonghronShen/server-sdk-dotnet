@@ -27,7 +27,7 @@ Rong Cloud Server SDK in dotnet.
 ### Message
 - publishPrivate  发送单聊消息
 - publishTemplate  发送单聊模板消息
-- PublishSystem  发送系统消息
+- publishSystem  发送系统消息
 - publishSystemTemplate  发送系统模板消息
 - publishGroup  发送群组消息
 - publishDiscussion  发送讨论组消息
