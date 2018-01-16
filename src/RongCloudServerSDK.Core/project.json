@@ -1,0 +1,45 @@
+﻿{
+  "version": "1.0.0-*",
+
+  "packOptions": {
+    "summary": ".NET Core version of RongCloud Server SDK.",
+    "owners": [ "LonghronShen" ],
+    "requireLicenseAcceptance": false,
+    "tags": [ "rongcloud", ".NET", "Core" ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/LonghronShen/server-sdk-dotnet.git"
+    }
+  },
+
+  "dependencies": {
+    "Newtonsoft.Json": "9.0.1"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ],
+      "dependencies": {
+        "NETStandard.Library": "1.6.0",
+        "System.Net.Requests": "4.3.0",
+        "System.Globalization": "4.3.0",
+        "Mono.HttpUtility": "1.0.6201.40002"
+      },
+      "buildOptions": {
+        "define": [ "NETCORE" ]
+      }
+    },
+    "net451": {
+      "frameworkAssemblies": {
+        "System.Web": "4.0.0.0",
+        "System.Net.Http": "4.0.0.0"
+      }
+    }
+  },
+
+  "buildOptions": {
+  }
+}
