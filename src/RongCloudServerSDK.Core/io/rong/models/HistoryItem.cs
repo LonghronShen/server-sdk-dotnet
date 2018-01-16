@@ -18,12 +18,13 @@ namespace donet.io.rong.models
         static HistoryItem()
         {
             var asm = typeof(HistoryItem).GetTypeInfo().Assembly;
-            MessageTypes = asm.GetExportedTypes().Where(x => x.Name.EndsWith("Message")).ToDictionary(x =>
+            MessageTypes = asm.GetExportedTypes().Where(x => x.Name.EndsWith("Message")).Select(x =>
             {
-                var pi = x.GetTypeInfo().GetProperty("TYPE",
-                    BindingFlags.GetProperty | BindingFlags.NonPublic | BindingFlags.Static);
-                return pi.GetValue(null) as string;
-            }, x => x);
+                var pi = x.GetTypeInfo().GetField("TYPE",
+                    BindingFlags.IgnoreCase | BindingFlags.NonPublic | BindingFlags.Static);
+                var type = pi?.GetValue(null) as string;
+                return Tuple.Create(type, x);
+            }).Where(x => x.Item1 != null).ToDictionary(x => x.Item1, x => x.Item2);
         }
 
         public string appId { get; set; }

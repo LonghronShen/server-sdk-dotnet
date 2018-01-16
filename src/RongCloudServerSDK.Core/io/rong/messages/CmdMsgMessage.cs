@@ -20,7 +20,7 @@ namespace donet.io.rong.messages
         private String name = "";
         [JsonProperty]
         private String data = "";
-        private static String TYPE = "RC:TxtMsg";
+        private static String TYPE = "RC:CmdMsg";
 
         public CmdMsgMessage()
         {
