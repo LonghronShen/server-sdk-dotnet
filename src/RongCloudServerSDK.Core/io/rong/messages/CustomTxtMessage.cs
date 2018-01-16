@@ -18,7 +18,7 @@ namespace donet.io.rong.messages
     {
         [JsonProperty]
         private String content = "";
-        private static String TYPE = "RC:TxtMsg";
+        private static String TYPE = "RC:CustomTxt";
 
         public CustomTxtMessage()
         {
