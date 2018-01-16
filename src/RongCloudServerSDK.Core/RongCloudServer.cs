@@ -185,7 +185,6 @@ namespace io.rong
         /// <param name="appSecret"></param>
         /// <param name="fromUserId"></param>
         /// <param name="toUserIds"></param>
-        /// <param name="objectName"></param>
         /// <param name="content"></param>
         /// <param name="pushContent"></param>
         /// <param name="pushData"></param>
