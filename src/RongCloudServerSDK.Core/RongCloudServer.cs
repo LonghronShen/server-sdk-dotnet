@@ -71,7 +71,7 @@ namespace io.rong
         {
             var client = RongCloud.getInstance(appkey, appSecret);
             var result = client.user.getToken(userId, name, portraitUri);
-            if (result == null || result.getCode() != 0)
+            if (result == null || result.getCode() != 200)
             {
                 throw new Exception(result?.getErrorMessage());
             }
