@@ -127,7 +127,7 @@ namespace donet.io.rong.methods
 		 *
 	 	 * @return CodeSuccessReslut
 	 	 **/
-        public CodeSuccessReslut PublishSystem(String fromUserId, String[] toUserId, IRongMessage message, String pushContent, String pushData, int isPersisted, int isCounted)
+        public CodeSuccessReslut publishSystem(String fromUserId, String[] toUserId, IRongMessage message, String pushContent, String pushData, int isPersisted, int isCounted)
         {
 
             if (fromUserId == null)

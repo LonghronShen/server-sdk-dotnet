@@ -202,7 +202,7 @@ namespace io.rong
             {
                 if (msgtype)
                 {
-                    return client.message.PublishSystem(fromUserId, toUserIds, content,
+                    return client.message.publishSystem(fromUserId, toUserIds, content,
                         pushContent, pushData, isPersisted ? 1 : 0, isCounted ? 1 : 0);
                 }
                 else
