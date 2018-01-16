@@ -26,6 +26,7 @@
         "NETStandard.Library": "1.6.0",
         "System.Net.Requests": "4.3.0",
         "System.Globalization": "4.3.0",
+        "System.IO.Compression": "4.3.0",
         "Mono.HttpUtility": "1.0.6201.40002"
       },
       "buildOptions": {
@@ -35,7 +36,9 @@
     "net451": {
       "frameworkAssemblies": {
         "System.Web": "4.0.0.0",
-        "System.Net.Http": "4.0.0.0"
+        "System.Net.Http": "4.0.0.0",
+        "System.IO.Compression": "4.0.0.0",
+        "System.IO.Compression.FileSystem": "4.0.0.0"
       }
     }
   },

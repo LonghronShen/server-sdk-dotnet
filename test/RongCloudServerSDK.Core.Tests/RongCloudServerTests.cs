@@ -93,6 +93,20 @@ namespace RongCloudServerSDK.Tests
             Assert.True(retstr);
         }
 
+        [Fact]
+        public void DateTimeStringGenerator()
+        {
+            Assert.Equal("2018011701", new DateTime(2018, 1, 17, 1, 26, 0).ToString("yyyyMMddHH"));
+        }
+
+        [Fact]
+        public async void GetHistoryItemsAsyncTest()
+        {
+            var nowTime = new DateTime(2018, 1, 16, 11, 26, 0);
+            var items = await RongCloudServer.GetHistoryItemsAsync(appKey, appSecret, nowTime);
+            Assert.True(items?.Count > 0);
+        }
+
     }
 
 }

@@ -1,10 +1,14 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
+using System.IO.Compression;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using donet.io.rong;
 using donet.io.rong.models;
 using donet.io.rong.messages;
 using Newtonsoft.Json;
+using System.Net.Http;
 
 #if NETCORE
 using Mono.Web;
@@ -228,6 +232,72 @@ namespace io.rong
             var result = await InvokeAsync(appkey, appSecret, client =>
                  client.message.getHistory(date));
             return result?.getUrl();
+        }
+
+        /// <summary>
+        /// 消息历史记录下载地址获取
+        /// </summary>
+        /// <param name="appKey"></param>
+        /// <param name="appSecret"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static async Task<string> GetHistoryAsync(string appKey, string appSecret, DateTime date)
+        {
+            var dateString = date.ToString("yyyyMMddHH");
+            var result = await InvokeAsync(appKey, appSecret, client =>
+                 client.message.getHistory(dateString));
+            return result?.getUrl();
+        }
+
+        /// <summary>
+        /// 消息历史记录下载&解析
+        /// </summary>
+        /// <param name="appKey"></param>
+        /// <param name="appSecret"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static async Task<List<HistoryItem>> GetHistoryItemsAsync(string appKey, string appSecret, DateTime date)
+        {
+            var dateString = date.ToString("yyyyMMddHH");
+            var result = await InvokeAsync(appKey, appSecret, client =>
+                 client.message.getHistory(dateString));
+            var url = result?.getUrl();
+            if (string.IsNullOrEmpty(url))
+            {
+                throw new Exception("Failed to fetch the download url of the history pack.");
+            }
+            var list = new List<HistoryItem>();
+            using (var client = new HttpClient())
+            {
+                using (var stream = await client.GetStreamAsync(url))
+                {
+                    using (var zipArchieve = new ZipArchive(stream, ZipArchiveMode.Read))
+                    {
+                        foreach (var entry in zipArchieve.Entries)
+                        {
+                            using (var entryStream = entry.Open())
+                            {
+                                try
+                                {
+                                    using (TextReader tr = new StreamReader(entryStream))
+                                    {
+                                        using (var jsonReader = new JsonTextReader(tr))
+                                        {
+                                            var serializer = JsonSerializer.CreateDefault();
+                                            var item = serializer.Deserialize<HistoryItem>(jsonReader);
+                                            list.Add(item);
+                                        }
+                                    }
+                                }
+                                catch
+                                {
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return list;
         }
 
         /// <summary>
