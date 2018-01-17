@@ -19,11 +19,35 @@ using System.Web;
 namespace io.rong
 {
 
-    public class RongCloudServer
+    /// <summary>
+    /// Basic compatibility for old version of the RongCloud SDK.
+    /// </summary>
+    public static class RongCloudServer
     {
 
+        /// <summary>
+        /// Set if you want to print log.
+        /// </summary>
         public static bool DebugLog = false;
 
+        /// <summary>
+        /// Generate RongCloud 
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static string ToRongCloudDateString(this DateTime date)
+        {
+            return date.ToString("yyyyMMddHH");
+        }
+
+        /// <summary>
+        /// New style API invocation wrapper.
+        /// </summary>
+        /// <param name="appKey"></param>
+        /// <param name="appSecret"></param>
+        /// <param name="invoker"></param>
+        /// <param name="treatAsException"></param>
+        /// <returns></returns>
         public static async Task<bool> InvokeAsync(string appKey, string appSecret, Func<RongCloud, CodeSuccessReslut> invoker, bool treatAsException = false)
         {
             var result = await Task.Run(() => invoker(RongCloud.getInstance(appKey, appSecret)));
@@ -45,6 +69,15 @@ namespace io.rong
             return true;
         }
 
+        /// <summary>
+        /// New style API invocation wrapper.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="appKey"></param>
+        /// <param name="appSecret"></param>
+        /// <param name="invoker"></param>
+        /// <param name="treatAsException"></param>
+        /// <returns></returns>
         public static async Task<T> InvokeAsync<T>(string appKey, string appSecret, Func<RongCloud, T> invoker, bool treatAsException = false) where T : IRongMessageResult
         {
             var result = await Task.Run(() => invoker(RongCloud.getInstance(appKey, appSecret)));
@@ -250,7 +283,7 @@ namespace io.rong
         }
 
         /// <summary>
-        /// 消息历史记录下载&解析
+        /// 消息历史记录下载&amp;解析
         /// </summary>
         /// <param name="appKey"></param>
         /// <param name="appSecret"></param>
@@ -335,7 +368,8 @@ namespace io.rong
         /// </summary>
         /// <param name="appkey"></param>
         /// <param name="appSecret"></param>
-        /// <param name="chatroomInfo">chatroom[id10001]=name1001</param>
+        /// <param name="chatroomId"></param>
+        /// <param name="chatroomName"></param>
         /// <returns></returns>
         public static async Task<bool> CreateChatroomAsync(string appkey, string appSecret, string[] chatroomId, string[] chatroomName)
         {
