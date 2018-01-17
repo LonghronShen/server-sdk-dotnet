@@ -17,7 +17,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RongCloudServerSDK.Core", "
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RongCloudServerSDK.Core.Tests", "test\RongCloudServerSDK.Core.Tests\RongCloudServerSDK.Core.Tests.xproj", "{E55605F0-19E2-4CF0-B549-133613456D33}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RongCloudServerSDK.Sample", "src\RongCloudServerSDK.Sample\RongCloudServerSDK.Sample\RongCloudServerSDK.Sample.xproj", "{70FCBC0D-2936-4823-8449-B575C0DB1B63}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RongCloudServerSDK.Sample", "src\RongCloudServerSDK.Sample\RongCloudServerSDK.Sample.xproj", "{70FCBC0D-2936-4823-8449-B575C0DB1B63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
