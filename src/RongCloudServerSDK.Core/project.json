@@ -44,5 +44,6 @@
   },
 
   "buildOptions": {
+    "xmlDoc": true
   }
 }
